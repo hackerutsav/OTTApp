@@ -1,6 +1,5 @@
 package com.example.newottapp.ui.view
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private var pager = 0
 
-    private var currentpage=1;
+    private var currentpage=1
 
     lateinit var gridadapter: MyPagingAdapter
 
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 grid.onFinishLoading(false, null)
             }
         })
-
+        //setting grid adapter
         setGridAdapter()
     }
 
@@ -71,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setBackgroundDrawable(d)
     }
     private fun clearData() {
+        //clearing data of grid
         if (grid.adapter != null) {
             pager = 0
             gridadapter =
@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             searchView.isIconified = false
             getSearchData(viewModel.searchText)
         }
+        //adding 10 max length limit of search
         val et = searchView.findViewById<View>(searchView.context.resources
                 .getIdentifier("android:id/search_src_text", null, null)) as EditText
         et.filters = arrayOf<InputFilter>(LengthFilter(10))
@@ -105,15 +106,12 @@ class MainActivity : AppCompatActivity() {
                 viewModel.searchText = newText.toString()
                 if (TextUtils.isEmpty(newText)) {
                     isSearch = false
-//                    adapter.filter("")
-//                    listView.clearTextFilter()
                     clearData()
                     grid.onFinishLoading(true, viewModel.currentList)
                 } else if (newText?.length!! >2)  {
                     getSearchData(newText)
                     if (newText.length==10)
                         Toast.makeText(this@MainActivity,getText(R.string.searchLengthMax),Toast.LENGTH_LONG).show()
-//                    adapter.filter(newText)
                 }
                 return true
             }
@@ -147,6 +145,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getSearchData(searchData:String)
     {
+        //getting search data
         isSearch = true
         clearData()
         val newList = viewModel.getSearchList(searchData)
