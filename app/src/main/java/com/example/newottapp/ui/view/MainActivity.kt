@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -110,6 +111,8 @@ class MainActivity : AppCompatActivity() {
                     grid.onFinishLoading(true, viewModel.currentList)
                 } else if (newText?.length!! >2)  {
                     getSearchData(newText)
+                    if (newText.length==10)
+                        Toast.makeText(this@MainActivity,getText(R.string.searchLengthMax),Toast.LENGTH_LONG).show()
 //                    adapter.filter(newText)
                 }
                 return true

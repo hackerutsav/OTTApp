@@ -34,10 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    configurations {
-        debugImplementation.exclude group: "junit", module: "junit"
-    }
 }
 
 dependencies {
@@ -57,18 +53,13 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.9.0"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
-
     // Gson
     // https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.9'
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
-
     implementation 'com.github.nicolasjafelle:paginggridview:1.0'
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
     implementation 'junit:junit:4.13.2'
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
